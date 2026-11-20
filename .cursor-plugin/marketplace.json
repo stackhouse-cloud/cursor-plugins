@@ -1,0 +1,20 @@
+{
+  "$schema": "https://cursor.com/schemas/cursor-plugin/marketplace.json",
+  "name": "captionworks",
+  "owner": {
+    "name": "Captionworks",
+    "email": "iharris@captionworks.com"
+  },
+  "metadata": {
+    "description": "Official Captionworks plugins for Cursor",
+    "version": "1.0.0",
+    "pluginRoot": "plugins"
+  },
+  "plugins": [
+    {
+      "name": "quizletto",
+      "source": "quizletto",
+      "description": "Build quizzes, manage workspaces, and analyze results in Quizletto from Cursor."
+    }
+  ]
+}

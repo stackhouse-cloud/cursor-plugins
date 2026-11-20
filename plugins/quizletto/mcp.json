@@ -1,0 +1,7 @@
+{
+  "mcpServers": {
+    "quizletto": {
+      "url": "https://api.quizletto.cloud/v1/mcp"
+    }
+  }
+}

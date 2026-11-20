@@ -1,0 +1,25 @@
+{
+  "$schema": "https://cursor.com/schemas/cursor-plugin/plugin.json",
+  "name": "quizletto",
+  "displayName": "Quizletto",
+  "version": "1.0.0",
+  "description": "Build quizzes, manage workspaces, and analyze results in Quizletto from Cursor.",
+  "author": {
+    "name": "Captionworks"
+  },
+  "publisher": "Captionworks",
+  "homepage": "https://www.quizletto.cloud",
+  "repository": "https://github.com/captionworks/cursor-plugins",
+  "license": "MIT",
+  "logo": "assets/logo.svg",
+  "category": "Productivity",
+  "keywords": [
+    "quizletto",
+    "quizzes",
+    "assessments",
+    "analytics",
+    "mcp",
+    "captionworks"
+  ],
+  "mcpServers": "mcp.json"
+}
