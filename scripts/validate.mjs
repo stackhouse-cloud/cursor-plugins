@@ -11,8 +11,10 @@ const SKILL_NAME_RE = /^[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/;
 const SEMVER_RE =
   /^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(?:-((?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\.(?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?$/;
 
+// Match Cursor's marketplace.schema.json / plugin.schema.json
+// (additionalProperties: false). Do not allow "$schema" — Cursor's Ajv
+// validator rejects it, and https://cursor.com/schemas/... is only an $id.
 const ALLOWED_MARKETPLACE_KEYS = new Set([
-  "$schema",
   "name",
   "owner",
   "metadata",
@@ -27,7 +29,6 @@ const ALLOWED_PLUGIN_ENTRY_KEYS = new Set([
 ]);
 
 const ALLOWED_PLUGIN_MANIFEST_KEYS = new Set([
-  "$schema",
   "name",
   "displayName",
   "description",
@@ -50,6 +51,9 @@ const ALLOWED_PLUGIN_MANIFEST_KEYS = new Set([
   "variables",
   "mcpServers",
 ]);
+
+const CATEGORY_RE = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
+const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 const BUILTIN_MCP_VARS = new Set([
   "CURSOR_PLUGIN_ROOT",
@@ -199,6 +203,16 @@ export async function validateMarketplaceRepo(repoRoot) {
     errors.push('Marketplace "owner.name" is required.');
   }
 
+  if (
+    !marketplace.owner ||
+    typeof marketplace.owner.email !== "string" ||
+    !EMAIL_RE.test(marketplace.owner.email)
+  ) {
+    errors.push(
+      'Marketplace "owner.email" is required for Cursor Marketplace submissions.'
+    );
+  }
+
   const pluginRoot = marketplace.metadata?.pluginRoot;
   if (pluginRoot !== undefined) {
     if (!isSafeRelativeSubpath(pluginRoot)) {
@@ -306,6 +320,32 @@ export async function validateMarketplaceRepo(repoRoot) {
       errors.push(
         `${entry.name}: plugin.json version ("${pluginManifest.version}") must be valid semver (X.Y.Z).`
       );
+    }
+
+    if (
+      !pluginManifest.author ||
+      typeof pluginManifest.author.name !== "string" ||
+      pluginManifest.author.name.trim().length === 0
+    ) {
+      errors.push(`${entry.name}: plugin.json author.name is required.`);
+    } else if (
+      typeof pluginManifest.author.email !== "string" ||
+      !EMAIL_RE.test(pluginManifest.author.email)
+    ) {
+      errors.push(
+        `${entry.name}: plugin.json author.email is required for Cursor Marketplace submissions.`
+      );
+    }
+
+    if (pluginManifest.category !== undefined) {
+      if (
+        typeof pluginManifest.category !== "string" ||
+        !CATEGORY_RE.test(pluginManifest.category)
+      ) {
+        errors.push(
+          `${entry.name}: plugin.json category ("${pluginManifest.category}") must be lowercase kebab-case (e.g. "productivity").`
+        );
+      }
     }
 
     for (const urlField of ["homepage", "repository"]) {

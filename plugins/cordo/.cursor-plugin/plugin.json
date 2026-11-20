@@ -1,0 +1,36 @@
+{
+  "name": "cordo",
+  "displayName": "Cordo",
+  "version": "1.0.0",
+  "description": "Explore streams, query events, and investigate ops findings in Cordo from Cursor.",
+  "author": {
+    "name": "StackHouse",
+    "email": "privacy@captionworks.com"
+  },
+  "publisher": "StackHouse",
+  "homepage": "https://www.cordo.cloud",
+  "repository": "https://github.com/stackhouse-cloud/cursor-plugins",
+  "license": "MIT",
+  "logo": "assets/logo.svg",
+  "category": "productivity",
+  "keywords": [
+    "cordo",
+    "observability",
+    "logs",
+    "analytics",
+    "mcp",
+    "stackhouse"
+  ],
+  "variables": {
+    "type": "object",
+    "properties": {
+      "CORDO_API_TOKEN": {
+        "type": "string",
+        "title": "Cordo API token",
+        "description": "Personal access token created under Cordo Settings → API tokens. Prefer a read-only token (streams:read + events:read); add write scopes only when the agent should change streams, views, monitors, channels, or keys.",
+        "minLength": 1
+      }
+    },
+    "required": ["CORDO_API_TOKEN"]
+  }
+}

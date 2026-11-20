@@ -1,8 +1,8 @@
 {
-  "$schema": "https://cursor.com/schemas/cursor-plugin/marketplace.json",
   "name": "stackhouse",
   "owner": {
-    "name": "StackHouse"
+    "name": "StackHouse",
+    "email": "privacy@captionworks.com"
   },
   "metadata": {
     "description": "Official StackHouse plugins for Cursor",
@@ -14,6 +14,16 @@
       "name": "quizletto",
       "source": "quizletto",
       "description": "Build quizzes, manage workspaces, and analyze results in Quizletto from Cursor."
+    },
+    {
+      "name": "tixanto",
+      "source": "tixanto",
+      "description": "Work with Tixanto issues, projects, cycles, and comments from Cursor."
+    },
+    {
+      "name": "cordo",
+      "source": "cordo",
+      "description": "Explore streams, query events, and investigate ops findings in Cordo from Cursor."
     }
   ]
 }

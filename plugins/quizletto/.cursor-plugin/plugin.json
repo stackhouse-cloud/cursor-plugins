@@ -1,18 +1,18 @@
 {
-  "$schema": "https://cursor.com/schemas/cursor-plugin/plugin.json",
   "name": "quizletto",
   "displayName": "Quizletto",
   "version": "1.0.0",
   "description": "Build quizzes, manage workspaces, and analyze results in Quizletto from Cursor.",
   "author": {
-    "name": "StackHouse"
+    "name": "StackHouse",
+    "email": "privacy@captionworks.com"
   },
   "publisher": "StackHouse",
   "homepage": "https://www.quizletto.cloud",
   "repository": "https://github.com/stackhouse-cloud/cursor-plugins",
   "license": "MIT",
   "logo": "assets/logo.svg",
-  "category": "Productivity",
+  "category": "productivity",
   "keywords": [
     "quizletto",
     "quizzes",
@@ -20,6 +20,5 @@
     "analytics",
     "mcp",
     "stackhouse"
-  ],
-  "mcpServers": "mcp.json"
+  ]
 }

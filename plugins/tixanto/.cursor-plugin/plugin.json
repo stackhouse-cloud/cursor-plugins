@@ -1,0 +1,36 @@
+{
+  "name": "tixanto",
+  "displayName": "Tixanto",
+  "version": "1.0.0",
+  "description": "Work with Tixanto issues, projects, cycles, and comments from Cursor.",
+  "author": {
+    "name": "StackHouse",
+    "email": "privacy@captionworks.com"
+  },
+  "publisher": "StackHouse",
+  "homepage": "https://www.tixanto.cloud",
+  "repository": "https://github.com/stackhouse-cloud/cursor-plugins",
+  "license": "MIT",
+  "logo": "assets/logo.svg",
+  "category": "productivity",
+  "keywords": [
+    "tixanto",
+    "issues",
+    "sprints",
+    "project-management",
+    "mcp",
+    "stackhouse"
+  ],
+  "variables": {
+    "type": "object",
+    "properties": {
+      "TIXANTO_API_KEY": {
+        "type": "string",
+        "title": "Tixanto API key",
+        "description": "Personal API key created under Tixanto Settings → API keys.",
+        "minLength": 1
+      }
+    },
+    "required": ["TIXANTO_API_KEY"]
+  }
+}

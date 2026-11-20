@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "tixanto": {
+      "type": "http",
+      "url": "https://api.tixanto.cloud/v1/mcp/http",
+      "headers": {
+        "X-API-Key": "${TIXANTO_API_KEY}"
+      }
+    }
+  }
+}

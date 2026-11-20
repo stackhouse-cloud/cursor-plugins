@@ -12,7 +12,7 @@ const REPO_ROOT = path.resolve(
   ".."
 );
 
-test("stackhouse-cloud/cursor-plugins repository passes validation and ships quizletto", async () => {
+test("stackhouse-cloud/cursor-plugins repository passes validation and ships quizletto + tixanto + cordo", async () => {
   const result = await validateMarketplaceRepo(REPO_ROOT);
   assert.deepEqual(result.errors, []);
   assert.equal(result.valid, true);
@@ -25,7 +25,9 @@ test("stackhouse-cloud/cursor-plugins repository passes validation and ships qui
   );
   assert.equal(marketplace.name, "stackhouse");
   assert.equal(marketplace.owner?.name, "StackHouse");
+  assert.equal(marketplace.owner?.email, "privacy@captionworks.com");
   assert.equal(marketplace.metadata?.pluginRoot, "plugins");
+  assert.equal(marketplace.$schema, undefined);
 
   const quizlettoEntry = marketplace.plugins.find(
     (p) => p.name === "quizletto"
@@ -33,15 +35,126 @@ test("stackhouse-cloud/cursor-plugins repository passes validation and ships qui
   assert.ok(quizlettoEntry, "expected quizletto entry in marketplace.json");
   assert.equal(quizlettoEntry.source, "quizletto");
 
+  const tixantoEntry = marketplace.plugins.find((p) => p.name === "tixanto");
+  assert.ok(tixantoEntry, "expected tixanto entry in marketplace.json");
+  assert.equal(tixantoEntry.source, "tixanto");
+
+  const pluginManifest = JSON.parse(
+    await fs.readFile(
+      path.join(
+        REPO_ROOT,
+        "plugins",
+        "quizletto",
+        ".cursor-plugin",
+        "plugin.json"
+      ),
+      "utf8"
+    )
+  );
+  assert.equal(pluginManifest.$schema, undefined);
+  assert.equal(pluginManifest.category, "productivity");
+  assert.equal(pluginManifest.author?.email, "privacy@captionworks.com");
+  assert.equal(pluginManifest.mcpServers, undefined);
+
   const mcp = JSON.parse(
     await fs.readFile(
       path.join(REPO_ROOT, "plugins", "quizletto", "mcp.json"),
       "utf8"
     )
   );
+  assert.equal(mcp.mcpServers?.quizletto?.type, "http");
   assert.equal(
     mcp.mcpServers?.quizletto?.url,
     "https://api.quizletto.cloud/v1/mcp"
+  );
+
+  assert.ok(
+    await fs
+      .access(path.join(REPO_ROOT, "plugins", "quizletto", "LICENSE"))
+      .then(() => true)
+      .catch(() => false),
+    "expected plugins/quizletto/LICENSE"
+  );
+
+  const tixantoManifest = JSON.parse(
+    await fs.readFile(
+      path.join(
+        REPO_ROOT,
+        "plugins",
+        "tixanto",
+        ".cursor-plugin",
+        "plugin.json"
+      ),
+      "utf8"
+    )
+  );
+  assert.equal(tixantoManifest.category, "productivity");
+  assert.equal(tixantoManifest.author?.email, "privacy@captionworks.com");
+  assert.ok(
+    tixantoManifest.variables?.properties?.TIXANTO_API_KEY,
+    "expected TIXANTO_API_KEY plugin variable"
+  );
+
+  const tixantoMcp = JSON.parse(
+    await fs.readFile(
+      path.join(REPO_ROOT, "plugins", "tixanto", "mcp.json"),
+      "utf8"
+    )
+  );
+  assert.equal(tixantoMcp.mcpServers?.tixanto?.type, "http");
+  assert.equal(
+    tixantoMcp.mcpServers?.tixanto?.url,
+    "https://api.tixanto.cloud/v1/mcp/http"
+  );
+  assert.equal(
+    tixantoMcp.mcpServers?.tixanto?.headers?.["X-API-Key"],
+    "${TIXANTO_API_KEY}"
+  );
+
+  assert.ok(
+    await fs
+      .access(path.join(REPO_ROOT, "plugins", "tixanto", "LICENSE"))
+      .then(() => true)
+      .catch(() => false),
+    "expected plugins/tixanto/LICENSE"
+  );
+
+  const cordoEntry = marketplace.plugins.find((p) => p.name === "cordo");
+  assert.ok(cordoEntry, "expected cordo entry in marketplace.json");
+  assert.equal(cordoEntry.source, "cordo");
+
+  const cordoManifest = JSON.parse(
+    await fs.readFile(
+      path.join(REPO_ROOT, "plugins", "cordo", ".cursor-plugin", "plugin.json"),
+      "utf8"
+    )
+  );
+  assert.equal(cordoManifest.category, "productivity");
+  assert.equal(cordoManifest.author?.email, "privacy@captionworks.com");
+  assert.ok(
+    cordoManifest.variables?.properties?.CORDO_API_TOKEN,
+    "expected CORDO_API_TOKEN plugin variable"
+  );
+
+  const cordoMcp = JSON.parse(
+    await fs.readFile(
+      path.join(REPO_ROOT, "plugins", "cordo", "mcp.json"),
+      "utf8"
+    )
+  );
+  assert.equal(cordoMcp.mcpServers?.cordo?.type, "http");
+  assert.equal(cordoMcp.mcpServers?.cordo?.url, "https://api.cordo.cloud/mcp");
+  assert.equal(
+    cordoMcp.mcpServers?.cordo?.headers?.Authorization,
+    "Bearer ${CORDO_API_TOKEN}"
+  );
+
+  assert.ok(
+    await fs
+      .access(path.join(REPO_ROOT, "plugins", "cordo", "LICENSE"))
+      .then(() => true)
+      .catch(() => false),
+    "expected plugins/cordo/LICENSE"
   );
 });
 
@@ -123,6 +236,46 @@ test("validator rejects common Cursor marketplace pitfalls", async () => {
     assert.ok(
       missingVar.errors.some((e) => e.includes("DEMO_TOKEN")),
       "should reject undeclared ${VAR} placeholder in mcp.json"
+    );
+
+    // Reject Cursor-schema-incompatible "$schema" and Title Case categories
+    await fs.writeFile(
+      path.join(tmpDir, ".cursor-plugin", "marketplace.json"),
+      JSON.stringify({
+        $schema: "https://cursor.com/schemas/cursor-plugin/marketplace.json",
+        name: "captionworks",
+        owner: { name: "Captionworks", email: "plugins@example.com" },
+        metadata: { pluginRoot: "plugins" },
+        plugins: [{ name: "demo", source: "demo" }],
+      })
+    );
+    await fs.writeFile(
+      path.join(tmpDir, "plugins", "demo", ".cursor-plugin", "plugin.json"),
+      JSON.stringify({
+        $schema: "https://cursor.com/schemas/cursor-plugin/plugin.json",
+        name: "demo",
+        author: { name: "Captionworks", email: "plugins@example.com" },
+        category: "Productivity",
+      })
+    );
+    await fs.writeFile(
+      path.join(tmpDir, "plugins", "demo", "mcp.json"),
+      JSON.stringify({
+        mcpServers: { demo: { type: "http", url: "https://example.com/mcp" } },
+      })
+    );
+
+    const schemaNoise = await validateMarketplaceRepo(tmpDir);
+    assert.equal(schemaNoise.valid, false);
+    assert.ok(
+      schemaNoise.errors.some((e) =>
+        e.includes('unsupported key "$schema"')
+      ),
+      "should reject $schema (Cursor Ajv additionalProperties: false)"
+    );
+    assert.ok(
+      schemaNoise.errors.some((e) => e.includes("lowercase kebab-case")),
+      "should reject Title Case category values"
     );
   } finally {
     await fs.rm(tmpDir, { recursive: true, force: true });
