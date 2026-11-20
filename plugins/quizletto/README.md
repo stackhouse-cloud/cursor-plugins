@@ -9,7 +9,7 @@ Connect Cursor to [Quizletto](https://www.quizletto.cloud) to create, edit, test
 
 ## Setup
 
-1. Install the **Quizletto** plugin in Cursor (from the Captionworks marketplace or [GitHub repository](https://github.com/captionworks/cursor-plugins)).
+1. Install the **Quizletto** plugin in Cursor (from the StackHouse marketplace or [GitHub repository](https://github.com/stackhouse-cloud/cursor-plugins)).
 2. On your first Quizletto prompt (or via **Customize → Plugins → Quizletto**), Cursor opens your browser to sign in to Quizletto and approve access.
 3. Ask Cursor to call `quizletto_context` or list your quizzes to verify the connection.
 

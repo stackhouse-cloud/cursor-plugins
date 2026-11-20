@@ -1,12 +1,11 @@
 {
   "$schema": "https://cursor.com/schemas/cursor-plugin/marketplace.json",
-  "name": "captionworks",
+  "name": "stackhouse",
   "owner": {
-    "name": "Captionworks",
-    "email": "iharris@captionworks.com"
+    "name": "StackHouse"
   },
   "metadata": {
-    "description": "Official Captionworks plugins for Cursor",
+    "description": "Official StackHouse plugins for Cursor",
     "version": "1.0.0",
     "pluginRoot": "plugins"
   },

@@ -12,7 +12,7 @@ const REPO_ROOT = path.resolve(
   ".."
 );
 
-test("captionworks/cursor-plugins repository passes validation and ships quizletto", async () => {
+test("stackhouse-cloud/cursor-plugins repository passes validation and ships quizletto", async () => {
   const result = await validateMarketplaceRepo(REPO_ROOT);
   assert.deepEqual(result.errors, []);
   assert.equal(result.valid, true);
@@ -23,7 +23,8 @@ test("captionworks/cursor-plugins repository passes validation and ships quizlet
       "utf8"
     )
   );
-  assert.equal(marketplace.name, "captionworks");
+  assert.equal(marketplace.name, "stackhouse");
+  assert.equal(marketplace.owner?.name, "StackHouse");
   assert.equal(marketplace.metadata?.pluginRoot, "plugins");
 
   const quizlettoEntry = marketplace.plugins.find(

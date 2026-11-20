@@ -5,11 +5,11 @@
   "version": "1.0.0",
   "description": "Build quizzes, manage workspaces, and analyze results in Quizletto from Cursor.",
   "author": {
-    "name": "Captionworks"
+    "name": "StackHouse"
   },
-  "publisher": "Captionworks",
+  "publisher": "StackHouse",
   "homepage": "https://www.quizletto.cloud",
-  "repository": "https://github.com/captionworks/cursor-plugins",
+  "repository": "https://github.com/stackhouse-cloud/cursor-plugins",
   "license": "MIT",
   "logo": "assets/logo.svg",
   "category": "Productivity",
@@ -19,7 +19,7 @@
     "assessments",
     "analytics",
     "mcp",
-    "captionworks"
+    "stackhouse"
   ],
   "mcpServers": "mcp.json"
 }
