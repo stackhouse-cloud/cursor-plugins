@@ -1,6 +1,6 @@
 # Cordo MCP tool cheat sheet
 
-Server namespace in Cursor is usually `plugin-cordo-cordo` or `user-cordo`. Endpoint: `https://api.cordo.cloud/mcp` (Streamable HTTP). Auth: `Authorization: Bearer lxp_…`.
+Server namespace in Cursor is usually `plugin-cordo-cordo` or `user-cordo`. Endpoint: `https://api.cordo.cloud/mcp` (Streamable HTTP). Auth: OAuth 2.1 browser sign-in (or personal access token `Authorization: Bearer lxp_…`).
 
 Call `cordo_help` for the live catalogue and investigation recipes. This file is a compact map, not a schema dump.
 

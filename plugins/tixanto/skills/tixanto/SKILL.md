@@ -10,7 +10,7 @@ Work with Tixanto workspaces, projects, issues, cycles, and comments over MCP. D
 ## 1. Connect and bootstrap
 
 1. Find the Tixanto MCP namespace (`plugin-tixanto-tixanto`, `user-tixanto`, or `tixanto`) via `GetDynamicTools`.
-2. If the namespace reports `needsAuth`, call `mcp_auth` with `{}` so the user can enter or refresh their API key.
+2. If the namespace reports `needsAuth`, call `mcp_auth` with `{}` so the user can sign in with OAuth 2.1 in their browser.
 3. Start sessions with `tixanto_context`:
    - Returns the signed-in user, workspaces, selected workspace, projects, and recent issues.
    - When the user belongs to multiple workspaces, pass `workspace_id` on workspace- and issue-scoped calls.

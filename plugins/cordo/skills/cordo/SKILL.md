@@ -10,7 +10,7 @@ Work with Cordo streams, events, views, findings, monitors, and channels over MC
 ## 1. Connect and bootstrap
 
 1. Find the Cordo MCP namespace (`plugin-cordo-cordo`, `user-cordo`, or `cordo`) via `GetDynamicTools`.
-2. If the namespace reports `needsAuth`, call `mcp_auth` with `{}` so the user can enter or refresh their personal access token.
+2. If the namespace reports `needsAuth`, call `mcp_auth` with `{}` so the user can sign in with OAuth 2.1 in their browser.
 3. Start sessions with `cordo_context`:
    - Returns the signed-in user, non-empty streams (usage/retention), and views.
    - Streams with `event_count=0` are omitted; use `manage_streams` for the full list.
