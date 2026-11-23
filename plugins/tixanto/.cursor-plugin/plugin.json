@@ -20,17 +20,5 @@
     "project-management",
     "mcp",
     "stackhouse"
-  ],
-  "variables": {
-    "type": "object",
-    "properties": {
-      "TIXANTO_API_KEY": {
-        "type": "string",
-        "title": "Tixanto API key",
-        "description": "Personal API key created under Tixanto Settings → API keys.",
-        "minLength": 1
-      }
-    },
-    "required": ["TIXANTO_API_KEY"]
-  }
+  ]
 }

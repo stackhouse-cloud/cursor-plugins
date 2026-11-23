@@ -90,9 +90,10 @@ test("stackhouse-cloud/cursor-plugins repository passes validation and ships qui
   );
   assert.equal(tixantoManifest.category, "productivity");
   assert.equal(tixantoManifest.author?.email, "privacy@captionworks.com");
-  assert.ok(
-    tixantoManifest.variables?.properties?.TIXANTO_API_KEY,
-    "expected TIXANTO_API_KEY plugin variable"
+  assert.equal(
+    tixantoManifest.variables,
+    undefined,
+    "tixanto uses OAuth 2.1 and should not require plugin variables"
   );
 
   const tixantoMcp = JSON.parse(
@@ -107,8 +108,9 @@ test("stackhouse-cloud/cursor-plugins repository passes validation and ships qui
     "https://api.tixanto.cloud/v1/mcp/http"
   );
   assert.equal(
-    tixantoMcp.mcpServers?.tixanto?.headers?.["X-API-Key"],
-    "${TIXANTO_API_KEY}"
+    tixantoMcp.mcpServers?.tixanto?.headers,
+    undefined,
+    "tixanto uses OAuth 2.1 and should not set static auth headers"
   );
 
   assert.ok(
