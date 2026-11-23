@@ -2,10 +2,7 @@
   "mcpServers": {
     "cordo": {
       "type": "http",
-      "url": "https://api.cordo.cloud/mcp",
-      "headers": {
-        "Authorization": "Bearer ${CORDO_API_TOKEN}"
-      }
+      "url": "https://api.cordo.cloud/mcp"
     }
   }
 }

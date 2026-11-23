@@ -16,14 +16,14 @@ Official [Cursor](https://cursor.com) plugin marketplace for [StackHouse](https:
 
 1. Open **Customize → Plugins** in Cursor, or browse [cursor.com/marketplace](https://cursor.com/marketplace).
 2. Search for **Quizletto**, **Tixanto**, or **Cordo** and install it.
-3. Complete auth for that plugin: Quizletto and Tixanto open an OAuth sign-in screen; Cordo asks for a personal token under **Configure**.
+3. Sign in with your StackHouse account when Cursor opens the OAuth 2.1 browser screen.
 
 ### From GitHub repository (individual users)
 
 1. Open **Customize → Plugins** in Cursor.
 2. Choose **From GitHub Repository** (or run `/plugin marketplace add https://github.com/stackhouse-cloud/cursor-plugins` in Cursor CLI).
 3. Enter `https://github.com/stackhouse-cloud/cursor-plugins` and install the plugins you need.
-4. Complete auth for that plugin: Quizletto and Tixanto open an OAuth sign-in screen; Cordo asks for a personal token under **Configure**.
+4. Sign in with your StackHouse account when Cursor opens the OAuth 2.1 browser screen.
 
 ### Team / Enterprise Marketplace (org admins)
 
@@ -51,7 +51,7 @@ Remove any duplicate manual server entry from `~/.cursor/mcp.json` so the MCP se
 - [Privacy Policy](https://stackhouse.cloud/privacy)
 - Support: [Contact StackHouse](https://stackhouse.cloud/contact) or email [privacy@captionworks.com](mailto:privacy@captionworks.com)
 
-Plugins are free to install and use. Quizletto and Tixanto sign in with a free StackHouse account via OAuth 2.1. Cordo uses a personal token you paste into the plugin configure dialog — tokens are not committed in the plugin source.
+Plugins are free to install and use. Quizletto, Tixanto, and Cordo sign in with a free StackHouse account via OAuth 2.1 — no API keys or secrets are stored in the plugin source.
 
 ## Repository layout & adding more StackHouse plugins
 

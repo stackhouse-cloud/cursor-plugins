@@ -20,17 +20,5 @@
     "analytics",
     "mcp",
     "stackhouse"
-  ],
-  "variables": {
-    "type": "object",
-    "properties": {
-      "CORDO_API_TOKEN": {
-        "type": "string",
-        "title": "Cordo API token",
-        "description": "Personal access token created under Cordo Settings → API tokens. Prefer a read-only token (streams:read + events:read); add write scopes only when the agent should change streams, views, monitors, channels, or keys.",
-        "minLength": 1
-      }
-    },
-    "required": ["CORDO_API_TOKEN"]
-  }
+  ]
 }

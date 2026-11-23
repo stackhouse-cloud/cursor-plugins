@@ -133,9 +133,10 @@ test("stackhouse-cloud/cursor-plugins repository passes validation and ships qui
   );
   assert.equal(cordoManifest.category, "productivity");
   assert.equal(cordoManifest.author?.email, "privacy@captionworks.com");
-  assert.ok(
-    cordoManifest.variables?.properties?.CORDO_API_TOKEN,
-    "expected CORDO_API_TOKEN plugin variable"
+  assert.equal(
+    cordoManifest.variables,
+    undefined,
+    "cordo uses OAuth 2.1 and should not require plugin variables"
   );
 
   const cordoMcp = JSON.parse(
@@ -147,8 +148,9 @@ test("stackhouse-cloud/cursor-plugins repository passes validation and ships qui
   assert.equal(cordoMcp.mcpServers?.cordo?.type, "http");
   assert.equal(cordoMcp.mcpServers?.cordo?.url, "https://api.cordo.cloud/mcp");
   assert.equal(
-    cordoMcp.mcpServers?.cordo?.headers?.Authorization,
-    "Bearer ${CORDO_API_TOKEN}"
+    cordoMcp.mcpServers?.cordo?.headers,
+    undefined,
+    "cordo uses OAuth 2.1 and should not set static auth headers"
   );
 
   assert.ok(
