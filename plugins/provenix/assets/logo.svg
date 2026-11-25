@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none">
+  <title>Provenix</title>
+  <rect width="32" height="32" rx="8" fill="#0f766e"/>
+  <path fill="#fff" fill-rule="evenodd" d="M9.35 6.85h8.45c4.4 0 7.2 2.7 7.2 6.8s-2.8 6.8-7.2 6.8h-4.55V25.2H9.35V6.85Zm4.2 3.5v6.6h4.05c2.2 0 3.55-1.25 3.55-3.3s-1.35-3.3-3.55-3.3H13.55Z"/>
+</svg>

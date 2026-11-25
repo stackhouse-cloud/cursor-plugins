@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "provenix": {
+      "type": "http",
+      "url": "https://api.provenix.cloud/mcp"
+    }
+  }
+}

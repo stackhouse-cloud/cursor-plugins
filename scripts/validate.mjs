@@ -60,7 +60,7 @@ const BUILTIN_MCP_VARS = new Set([
   "CLAUDE_PLUGIN_ROOT",
 ]);
 
-const SECRET_TOKEN_RE = /\b(?:qzl_[A-Za-z0-9_-]{8,}|gh[pousr]_[A-Za-z0-9]{20,}|sk-[A-Za-z0-9]{20,})\b/;
+const SECRET_TOKEN_RE = /\b(?:qzl_[A-Za-z0-9_-]{8,}|dfsa_[A-Za-z0-9_-]{8,}|gh[pousr]_[A-Za-z0-9]{20,}|sk-[A-Za-z0-9]{20,})\b/;
 
 async function pathExists(targetPath) {
   try {

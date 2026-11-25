@@ -9,13 +9,14 @@ Official [Cursor](https://cursor.com) plugin marketplace for [StackHouse](https:
 | [**Quizletto**](./plugins/quizletto) | `plugins/quizletto` | Build graded and profile quizzes, manage workspaces and candidate links, run test attempts, and analyze results via Quizletto MCP (`https://api.quizletto.cloud/v1/mcp`). |
 | [**Tixanto**](./plugins/tixanto) | `plugins/tixanto` | Find, create, update, and comment on issues; manage cycles and epics via Tixanto MCP (`https://api.tixanto.cloud/v1/mcp/http`). |
 | [**Cordo**](./plugins/cordo) | `plugins/cordo` | Explore streams, query events, and investigate ops findings via Cordo MCP (`https://api.cordo.cloud/mcp`). |
+| [**Provenix**](./plugins/provenix) | `plugins/provenix` | Work the npm quarantine queue, investigate versions and their blast radius, and review packages via Provenix MCP (`https://api.provenix.cloud/mcp`). |
 
 ## Install in Cursor
 
 ### From the Cursor Marketplace (once listed)
 
 1. Open **Customize → Plugins** in Cursor, or browse [cursor.com/marketplace](https://cursor.com/marketplace).
-2. Search for **Quizletto**, **Tixanto**, or **Cordo** and install it.
+2. Search for **Quizletto**, **Tixanto**, **Cordo**, or **Provenix** and install it.
 3. Sign in with your StackHouse account when Cursor opens the OAuth 2.1 browser screen.
 
 ### From GitHub repository (individual users)
@@ -36,11 +37,12 @@ Official [Cursor](https://cursor.com) plugin marketplace for [StackHouse](https:
 Copy an individual plugin folder into `~/.cursor/plugins/local/<name>` (do not symlink outside `~/.cursor/plugins/local`) and reload Cursor:
 
 ```sh
-rm -rf ~/.cursor/plugins/local/quizletto ~/.cursor/plugins/local/tixanto ~/.cursor/plugins/local/cordo
+rm -rf ~/.cursor/plugins/local/quizletto ~/.cursor/plugins/local/tixanto ~/.cursor/plugins/local/cordo ~/.cursor/plugins/local/provenix
 mkdir -p ~/.cursor/plugins/local
 cp -R plugins/quizletto ~/.cursor/plugins/local/quizletto
 cp -R plugins/tixanto ~/.cursor/plugins/local/tixanto
 cp -R plugins/cordo ~/.cursor/plugins/local/cordo
+cp -R plugins/provenix ~/.cursor/plugins/local/provenix
 ```
 
 Remove any duplicate manual server entry from `~/.cursor/mcp.json` so the MCP server isn't loaded twice.
@@ -51,7 +53,7 @@ Remove any duplicate manual server entry from `~/.cursor/mcp.json` so the MCP se
 - [Privacy Policy](https://stackhouse.cloud/privacy)
 - Support: [Contact StackHouse](https://stackhouse.cloud/contact) or email [privacy@captionworks.com](mailto:privacy@captionworks.com)
 
-Plugins are free to install and use. Quizletto, Tixanto, and Cordo sign in with a free StackHouse account via OAuth 2.1 — no API keys or secrets are stored in the plugin source.
+Plugins are free to install and use. Quizletto, Tixanto, Cordo, and Provenix sign in with a free StackHouse account via OAuth 2.1 — no API keys or secrets are stored in the plugin source.
 
 ## Repository layout & adding more StackHouse plugins
 
@@ -64,13 +66,14 @@ cursor-plugins/
 ├── plugins/
 │   ├── quizletto/
 │   ├── tixanto/
-│   └── cordo/
+│   ├── cordo/
+│   └── provenix/
 │       ├── .cursor-plugin/
 │       │   └── plugin.json
 │       ├── assets/
 │       │   └── logo.svg
 │       ├── skills/
-│       │   └── cordo/
+│       │   └── provenix/
 │       │       └── SKILL.md
 │       ├── mcp.json
 │       ├── LICENSE

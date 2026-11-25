@@ -1,0 +1,25 @@
+{
+  "name": "provenix",
+  "displayName": "Provenix",
+  "version": "1.0.0",
+  "description": "Work the npm quarantine queue, investigate versions and their blast radius, and review packages in Provenix from Cursor.",
+  "author": {
+    "name": "StackHouse",
+    "email": "privacy@captionworks.com"
+  },
+  "publisher": "StackHouse",
+  "homepage": "https://www.provenix.cloud",
+  "repository": "https://github.com/stackhouse-cloud/cursor-plugins",
+  "license": "MIT",
+  "logo": "assets/logo.svg",
+  "category": "security",
+  "keywords": [
+    "provenix",
+    "npm",
+    "supply-chain",
+    "security",
+    "dependencies",
+    "mcp",
+    "stackhouse"
+  ]
+}

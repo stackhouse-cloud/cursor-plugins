@@ -24,6 +24,11 @@
       "name": "cordo",
       "source": "cordo",
       "description": "Explore streams, query events, and investigate ops findings in Cordo from Cursor."
+    },
+    {
+      "name": "provenix",
+      "source": "provenix",
+      "description": "Work the npm quarantine queue, investigate versions and their blast radius, and review packages in Provenix from Cursor."
     }
   ]
 }

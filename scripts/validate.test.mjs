@@ -12,7 +12,7 @@ const REPO_ROOT = path.resolve(
   ".."
 );
 
-test("stackhouse-cloud/cursor-plugins repository passes validation and ships quizletto + tixanto + cordo", async () => {
+test("stackhouse-cloud/cursor-plugins repository passes validation and ships quizletto + tixanto + cordo + provenix", async () => {
   const result = await validateMarketplaceRepo(REPO_ROOT);
   assert.deepEqual(result.errors, []);
   assert.equal(result.valid, true);
@@ -159,6 +159,55 @@ test("stackhouse-cloud/cursor-plugins repository passes validation and ships qui
       .then(() => true)
       .catch(() => false),
     "expected plugins/cordo/LICENSE"
+  );
+
+  const provenixEntry = marketplace.plugins.find((p) => p.name === "provenix");
+  assert.ok(provenixEntry, "expected provenix entry in marketplace.json");
+  assert.equal(provenixEntry.source, "provenix");
+
+  const provenixManifest = JSON.parse(
+    await fs.readFile(
+      path.join(
+        REPO_ROOT,
+        "plugins",
+        "provenix",
+        ".cursor-plugin",
+        "plugin.json"
+      ),
+      "utf8"
+    )
+  );
+  assert.equal(provenixManifest.category, "security");
+  assert.equal(provenixManifest.author?.email, "privacy@captionworks.com");
+  assert.equal(
+    provenixManifest.variables,
+    undefined,
+    "provenix uses OAuth 2.1 and should not require plugin variables"
+  );
+
+  const provenixMcp = JSON.parse(
+    await fs.readFile(
+      path.join(REPO_ROOT, "plugins", "provenix", "mcp.json"),
+      "utf8"
+    )
+  );
+  assert.equal(provenixMcp.mcpServers?.provenix?.type, "http");
+  assert.equal(
+    provenixMcp.mcpServers?.provenix?.url,
+    "https://api.provenix.cloud/mcp"
+  );
+  assert.equal(
+    provenixMcp.mcpServers?.provenix?.headers,
+    undefined,
+    "provenix uses OAuth 2.1 and should not set static auth headers"
+  );
+
+  assert.ok(
+    await fs
+      .access(path.join(REPO_ROOT, "plugins", "provenix", "LICENSE"))
+      .then(() => true)
+      .catch(() => false),
+    "expected plugins/provenix/LICENSE"
   );
 });
 
